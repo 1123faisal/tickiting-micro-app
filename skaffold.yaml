@@ -1,0 +1,59 @@
+apiVersion: skaffold/v4beta3
+kind: Config
+metadata:
+  name: ticket-app
+build:
+  local:
+    push: false
+  artifacts:
+    - image: 1123faisal/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "/src/**/*.ts"
+            dest: .
+    - image: 1123faisal/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.ts"
+            dest: .
+    - image: 1123faisal/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "/src/**/*.ts"
+            dest: .
+    - image: 1123faisal/orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "/src/**/*.ts"
+            dest: .
+    - image: 1123faisal/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "/src/**/*.ts"
+            dest: .
+    - image: 1123faisal/payment
+      context: payment
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "/src/**/*.ts"
+            dest: .
+manifests:
+  rawYaml:
+    - infra/k8s/*
