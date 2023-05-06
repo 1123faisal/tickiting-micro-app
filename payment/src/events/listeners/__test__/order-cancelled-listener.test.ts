@@ -1,6 +1,6 @@
 import { OrderCancelledEvent, OrderStatus } from "@1123faisalticket/common";
 import { Message } from "node-nats-streaming";
-import { Order } from "../../../models/order";
+import { Order } from "../../../models/payment";
 import { natsWrapper } from "../../../nats-wrapper";
 import { OrderCancelledListener } from "../order-cancelled-listener";
 

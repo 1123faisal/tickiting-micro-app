@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 import request from "supertest";
 import { app } from "../../app";
-import { Order, OrderStatus } from "../../models/order";
+import { Payment } from "../../models/payment";
 import { stripe } from "../../stripe";
+import { Order, OrderStatus } from "../../models/order";
 
 // it("return 404 when purchasing an order that does not exist.", async () => {
 //   await request(app)
@@ -78,4 +79,11 @@ it("return a 204 with valid input", async () => {
   const charge = stripeCharges.data.find((d) => d.amount == price * 100);
 
   expect(charge).toBeDefined();
+
+  const payment = await Payment.findOne({
+    orderId: order.id,
+    stripeId: charge?.id,
+  });
+
+  expect(payment).not.toBeNull();
 });
