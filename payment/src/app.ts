@@ -6,13 +6,18 @@ import {
 import cookieSession from "cookie-session";
 import express from "express";
 import "express-async-errors";
-import { createChargeRouter } from "./routes/new";
+import { createSessionRouter } from "./routes/session";
+import { createPaymentWebhookRouter } from "./routes/webhook";
 
 const app = express();
 
 app.set("trust proxy", true);
 
+// webhook route before body parse
+app.use(createPaymentWebhookRouter);
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(
   cookieSession({
     signed: false,
@@ -22,7 +27,7 @@ app.use(
 
 app.use(currentUser);
 
-app.use(createChargeRouter);
+app.use(createSessionRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError();

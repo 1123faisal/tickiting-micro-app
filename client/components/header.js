@@ -8,7 +8,7 @@ export default ({ currentUser }) => {
   ]
     .filter((config) => config)
     .map((v) => (
-      <li className="nav-item" key={v}>
+      <li className="nav-item" key={v.label}>
         <Link className="nav-link active" href={v.href}>
           {v.label}
         </Link>
