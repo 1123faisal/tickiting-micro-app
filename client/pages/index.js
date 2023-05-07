@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+// this is testing
 const LandingPage = ({ currentUser, tickets }) => {
   const ticketList = tickets.map((ticket) => {
     return (

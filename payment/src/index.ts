@@ -5,6 +5,8 @@ import { OrderCreatedListener } from "./events/listeners/order-created-listener"
 import { OrderCancelledListener } from "./events/listeners/order-cancelled-listener";
 
 (async () => {
+  console.log("starting up...");
+
   if (!process.env.MONGO_URI) {
     throw new Error("MONGO_URI must be defined.");
   }
@@ -49,4 +51,3 @@ import { OrderCancelledListener } from "./events/listeners/order-cancelled-liste
     console.log("Listening on port 3000.");
   });
 })();
-
