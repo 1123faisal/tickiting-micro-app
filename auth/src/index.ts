@@ -5,7 +5,7 @@ if (!process.env.MONGO_URI) {
   throw new Error("MONGO URI must be defind.");
 }
 
-console.log("staring up......");
+console.log("staring up......s");
 
 mongoose
   .connect(process.env.MONGO_URI)
