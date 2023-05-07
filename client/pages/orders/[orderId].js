@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const ProductDisplay = ({ order }) => (
@@ -28,6 +29,7 @@ const Message = ({ message }) => (
 
 const OrderShow = ({ order, currentUser }) => {
   const [msLeft, setMsTime] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     const findTimeLeft = () => {
@@ -49,7 +51,9 @@ const OrderShow = ({ order, currentUser }) => {
     const query = new URLSearchParams(window.location.search);
 
     if (query.get("success")) {
+      // this action depends on developer
       setMessage("Order placed! You will receive an email confirmation.");
+      router.push("/orders");
     }
 
     if (query.get("canceled")) {
@@ -81,7 +85,6 @@ const OrderShow = ({ order, currentUser }) => {
   return (
     <div>
       <div>Time left to pay: {msLeft} seconds.</div>
-      {errors}
       {order && content}
     </div>
   );
