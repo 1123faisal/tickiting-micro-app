@@ -4,12 +4,11 @@ import mongoose from "mongoose";
 import { natsWrapper } from "../../nats-wrapper";
 import { Ticket } from "../../models/ticket";
 
-jest.mock("../../nats-wrapper");
-
 it("return 404 if provided id does not exists", async () => {
   const mongoId = new mongoose.Types.ObjectId().toHexString();
-  request(app)
+  await request(app)
     .put(`/api/tickets/${mongoId}`)
+    .set("Cookie", await signin())
     .send({
       title: "asddsd",
       price: 20,
@@ -17,9 +16,9 @@ it("return 404 if provided id does not exists", async () => {
     .expect(404);
 });
 
-it("return 401 if user not authanticated", async () => {
+it("return 401 if user not authenticated", async () => {
   const mongoId = new mongoose.Types.ObjectId().toHexString();
-  request(app)
+  await request(app)
     .put(`/api/tickets/${mongoId}`)
     .send({
       title: "asddsd",
