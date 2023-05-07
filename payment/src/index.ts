@@ -5,6 +5,8 @@ import { OrderCreatedListener } from "./events/listeners/order-created-listener"
 import { OrderCancelledListener } from "./events/listeners/order-cancelled-listener";
 
 (async () => {
+  console.log("starting up...");
+
   if (!process.env.MONGO_URI) {
     throw new Error("MONGO_URI must be defined.");
   }
@@ -49,6 +51,3 @@ import { OrderCancelledListener } from "./events/listeners/order-cancelled-liste
     console.log("Listening on port 3000.");
   });
 })();
-
-// publish key = pk_test_51N2uOkSEzK72mp3PzNq1XcZYrMY62Q5X7xIfLPanwdjxgNsM5piwfypZOKhdpmdWVi0l0ScyFHmbnX2pMqaL2C5Q003q6qOcZ4
-// secret key = sk_test_51N2uOkSEzK72mp3P4mgCYv2eEnVJODrySBubR5KRQ7b1Bg8Rr5Ikus4AcDaaYWkUd4c7KCjeul5YE713aEYRIAsm00KrMsvnFm
