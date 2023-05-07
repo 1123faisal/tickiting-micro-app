@@ -3,7 +3,7 @@ import { natsWrapper } from "../../../nats-wrapper";
 import { OrderCreatedListener } from "../order-created-listener";
 import mongoose from "mongoose";
 import { Message } from "node-nats-streaming";
-import { Order } from "../../../models/payment";
+import { Order } from "../../../models/order";
 
 const setup = async () => {
   const listener = new OrderCreatedListener(natsWrapper.client);
