@@ -7,7 +7,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: ticket.dev
+    - host: www.tickiting.site
       http:
         paths:
           - path: /api/payments/?(.*)
@@ -45,5 +45,3 @@ spec:
                 name: client-srv
                 port:
                   number: 3000
-
-# sdfsdf
